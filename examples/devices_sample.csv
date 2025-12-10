@@ -1,0 +1,6 @@
+ip,username,password,command1,command2,command3,command4,command5
+10.0.1.36,admin,mypassword,ipconfig,ver,hostname,uptime,whoami
+10.0.1.37,admin,mypassword,ipconfig,ver,hostname,,
+10.0.1.38,admin,mypassword,ipconfig,ver,hostname,uptime,whoami
+10.0.1.39,admin,mypassword,ver,hostname,,, 
+10.0.1.40,admin,mypassword,ipconfig,ver,hostname,uptime,
