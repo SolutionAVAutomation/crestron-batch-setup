@@ -34,9 +34,9 @@ This creates:
 **CSV Format** (recommended for different commands per device):
 ```csv
 ip,username,password,command1,command2
-10.0.1.36,admin,mypassword,hostname CONF-RM-101,addmaster 10.0.1.100
-10.0.1.37,admin,mypassword,hostname CONF-RM-102,addmaster 10.0.1.100
-10.0.1.38,admin,mypassword,hostname CONF-RM-103,addmaster 10.0.1.100
+10.0.1.36,admin,mypassword,hostname CONF-RM-101,addmaster 11 10.0.1.100
+10.0.1.37,admin,mypassword,hostname CONF-RM-102,addmaster 12 10.0.1.100
+10.0.1.38,admin,mypassword,hostname CONF-RM-103,addmaster 13 10.0.1.100
 ```
 
 **Text Format** (for same commands on all devices):
@@ -93,9 +93,9 @@ Each run generates:
 Set hostname and IP table on new devices:
 ```csv
 ip,username,password,command1,command2
-10.0.1.36,admin,SecurePass123,hostname CONF-RM-101,addmaster 10.0.1.100
-10.0.1.37,admin,SecurePass123,hostname CONF-RM-102,addmaster 10.0.1.100
-10.0.1.38,admin,SecurePass123,hostname CONF-RM-103,addmaster 10.0.1.100
+10.0.1.36,admin,SecurePass123,hostname CONF-RM-101,addmaster 11 10.0.1.100
+10.0.1.37,admin,SecurePass123,hostname CONF-RM-102,addmaster 12 10.0.1.100
+10.0.1.38,admin,SecurePass123,hostname CONF-RM-103,addmaster 13 10.0.1.100
 ```
 
 ### Hostname Configuration
@@ -109,12 +109,12 @@ ip,username,password,command1
 ```
 
 ### IP Table Setup
-Configure master connections on all devices:
+Configure master connections with unique IP IDs:
 ```csv
 ip,username,password,command1,command2
-10.0.1.36,admin,password,addmaster 10.0.1.100,addmaster 10.0.1.101
-10.0.1.37,admin,password,addmaster 10.0.1.100,addmaster 10.0.1.101
-10.0.1.38,admin,password,addmaster 10.0.1.100,addmaster 10.0.1.101
+10.0.1.36,admin,password,addmaster 11 10.0.1.100,addmaster 21 10.0.1.101
+10.0.1.37,admin,password,addmaster 12 10.0.1.100,addmaster 22 10.0.1.101
+10.0.1.38,admin,password,addmaster 13 10.0.1.100,addmaster 23 10.0.1.101
 ```
 
 ### Firmware Check
@@ -152,7 +152,7 @@ Proceed with deployment to 2 devices? (y/N): y
 Processing Device: 10.0.1.36
 Commands to execute: 2
   1. hostname CONF-RM-101
-  2. addmaster 10.0.1.100
+  2. addmaster 11 10.0.1.100
 ============================================================
 ✅ Connected to 10.0.1.36 with admin credentials
 🔧 Executing 2 commands on 10.0.1.36
