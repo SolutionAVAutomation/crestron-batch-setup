@@ -33,10 +33,10 @@ This creates:
 
 **CSV Format** (recommended for different commands per device):
 ```csv
-ip,username,password,command1,command2,command3,command4,command5
-10.0.1.36,admin,mypassword,hostname device1,ipconfig,ver,,
-10.0.1.37,admin,mypassword,hostname device2,ipconfig,ver,,
-10.0.1.38,admin,mypassword,hostname device3,ipconfig,ver,uptime,
+ip,username,password,command1,command2
+10.0.1.36,admin,mypassword,hostname CONF-RM-101,addmaster 10.0.1.100
+10.0.1.37,admin,mypassword,hostname CONF-RM-102,addmaster 10.0.1.100
+10.0.1.38,admin,mypassword,hostname CONF-RM-103,addmaster 10.0.1.100
 ```
 
 **Text Format** (for same commands on all devices):
@@ -87,60 +87,34 @@ Each run generates:
 - `crestron_deployment_report_YYYYMMDD_HHMMSS.csv` - Device status summary
 - `crestron_command_details_YYYYMMDD_HHMMSS.csv` - Command-level results
 
-## Example Output
-
-```
-Crestron Bulk Device Setup Script - Enhanced with Dynamic Commands
-================================================================
-📁 Found default configuration file: devices.csv
-📋 Detected 5 command columns in CSV: command1, command2, command3, command4, command5
-✅ Row 2: 10.0.1.36 - 3 commands loaded
-✅ Row 3: 10.0.1.37 - 3 commands loaded
-✅ Loaded 2 devices from configuration
-
-📋 Deployment Configuration:
-   Devices to process: 2
-   Default username: admin
-   Command distribution:
-     2 device(s) with 3 command(s)
-
-Proceed with deployment to 2 devices? (y/N): y
-
-🚀 Starting bulk deployment...
-
-[1/2] Processing 10.0.1.36...
-============================================================
-Processing Device: 10.0.1.36
-Commands to execute: 3
-  1. hostname device1
-  2. ipconfig
-  3. ver
-============================================================
-✅ Connected to 10.0.1.36 with admin credentials
-🔧 Executing 3 commands on 10.0.1.36
-✅ 3/3 commands completed on 10.0.1.36
-✅ Device 10.0.1.36 completed successfully
-
-📈 Deployment Summary:
-   Total devices: 2
-   Successful devices: 2
-   Failed devices: 0
-   Device success rate: 100.0%
-   Total commands executed: 6
-   Successful commands: 6
-   Command success rate: 100.0%
-
-🏁 Bulk deployment completed!
-```
-
 ## Common Use Cases
 
 ### Initial Deployment
-Set up hostnames, network config, and security settings on new devices:
+Set hostname and IP table on new devices:
 ```csv
-ip,username,password,command1,command2,command3
-10.0.1.36,admin,SecurePass123,hostname CONF-RM-101,dhcp,authentication on
-10.0.1.37,admin,SecurePass123,hostname CONF-RM-102,dhcp,authentication on
+ip,username,password,command1,command2
+10.0.1.36,admin,SecurePass123,hostname CONF-RM-101,addmaster 10.0.1.100
+10.0.1.37,admin,SecurePass123,hostname CONF-RM-102,addmaster 10.0.1.100
+10.0.1.38,admin,SecurePass123,hostname CONF-RM-103,addmaster 10.0.1.100
+```
+
+### Hostname Configuration
+Set hostnames across multiple devices:
+```csv
+ip,username,password,command1
+10.0.1.36,admin,password,hostname PROC-BOARDROOM
+10.0.1.37,admin,password,hostname PROC-CONF-A
+10.0.1.38,admin,password,hostname PROC-CONF-B
+10.0.1.39,admin,password,hostname PROC-TRAINING
+```
+
+### IP Table Setup
+Configure master connections on all devices:
+```csv
+ip,username,password,command1,command2
+10.0.1.36,admin,password,addmaster 10.0.1.100,addmaster 10.0.1.101
+10.0.1.37,admin,password,addmaster 10.0.1.100,addmaster 10.0.1.101
+10.0.1.38,admin,password,addmaster 10.0.1.100,addmaster 10.0.1.101
 ```
 
 ### Firmware Check
@@ -152,12 +126,49 @@ ip,username,password,command1
 10.0.1.38,admin,password,ver
 ```
 
-### Network Audit
-Gather network configuration from all devices:
-```csv
-ip,username,password,command1,command2
-10.0.1.36,admin,password,ipconfig,hostname
-10.0.1.37,admin,password,ipconfig,hostname
+## Example Output
+
+```
+Crestron Bulk Device Setup Script - Enhanced with Dynamic Commands
+================================================================
+📁 Found default configuration file: devices.csv
+📋 Detected 2 command columns in CSV: command1, command2
+✅ Row 2: 10.0.1.36 - 2 commands loaded
+✅ Row 3: 10.0.1.37 - 2 commands loaded
+✅ Loaded 2 devices from configuration
+
+📋 Deployment Configuration:
+   Devices to process: 2
+   Default username: admin
+   Command distribution:
+     2 device(s) with 2 command(s)
+
+Proceed with deployment to 2 devices? (y/N): y
+
+🚀 Starting bulk deployment...
+
+[1/2] Processing 10.0.1.36...
+============================================================
+Processing Device: 10.0.1.36
+Commands to execute: 2
+  1. hostname CONF-RM-101
+  2. addmaster 10.0.1.100
+============================================================
+✅ Connected to 10.0.1.36 with admin credentials
+🔧 Executing 2 commands on 10.0.1.36
+✅ 2/2 commands completed on 10.0.1.36
+✅ Device 10.0.1.36 completed successfully
+
+📈 Deployment Summary:
+   Total devices: 2
+   Successful devices: 2
+   Failed devices: 0
+   Device success rate: 100.0%
+   Total commands executed: 4
+   Successful commands: 4
+   Command success rate: 100.0%
+
+🏁 Bulk deployment completed!
 ```
 
 ## Troubleshooting
@@ -179,4 +190,4 @@ MIT License - feel free to use and modify.
 
 ## Author
 
-Created for AV/IT professionals managing Crestron deployments.
+Created by [Solution AV Automation](https://github.com/SolutionAVAutomation) for AV/IT professionals managing Crestron deployments.
