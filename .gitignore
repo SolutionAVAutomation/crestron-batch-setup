@@ -1,0 +1,27 @@
+# Logs
+*.log
+crestron_bulk_*.log
+
+# Reports
+crestron_deployment_report_*.csv
+crestron_command_details_*.csv
+
+# Configuration files (may contain passwords)
+devices.csv
+devices.txt
+config.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
