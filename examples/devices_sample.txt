@@ -1,0 +1,8 @@
+# Crestron Device IP Addresses
+# One IP per line, lines starting with # are ignored
+# Commands will be prompted interactively for this format
+10.0.1.36
+10.0.1.37
+10.0.1.38
+10.0.1.39
+10.0.1.40
